@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>title</title>
+    <style type="text/css">
+      button,hr,input{overflow:visible}progress,sub,sup{vertical-align:baseline}[type=checkbox],[type=radio],legend{box-sizing:border-box;padding:0}html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}details,main{display:block}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:ButtonText dotted 1px}fieldset{padding:.35em .75em .625em}legend{color:inherit;display:table;max-width:100%;white-space:normal}textarea{overflow:auto}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}[hidden],template{display:none}
+
+
+    </style>
+    <style type="text/css">
+      h3,h4 {
+        text-align: center;
+      }
+      #svg-filters {
+        position: absolute;
+        width: 0;
+        visibility: hidden;
+        z-index: -100;
+      }
+      #p1 {
+        stroke: #000;
+        stroke-width: 2px;
+      }
+
+      #p2 {
+        stroke: url(#gradient-2);
+        stroke-width: 2px;
+      }
+
+      #p3 {
+       stroke: url(#gradient-3);
+       stroke-width: 2px; 
+      }
+      #gradient-base-1 {
+        animation: change-color1 5s ease-in-out infinite alternate;
+      }
+      #gradient-base-2 {
+        animation: change-color2 5s ease-in-out infinite alternate;
+      }
+      @keyframes change-color1 {
+        0% {stop-color: red;}
+        100% {stop-color: gold;}
+      }
+      @keyframes change-color2 {
+        0% {stop-color: blue;}
+        100% {stop-color: red;}
+      }
+
+      #p4 {
+        stroke: #000;
+        stroke-width: 2px;
+      }
+
+      #p5 {
+        stroke: #000;
+        stroke-width: 2px;
+      }
+
+      #p6 {
+        stroke-dasharray: 100vw 100vw;
+        stroke: url(#gradient-2);
+        stroke-width: 2px;
+        animation: full_line_draw 5s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+      }
+      @keyframes full_line_draw {
+        from { stroke-dashoffset: 0vw;}
+        to { stroke-dashoffset: 100vw;}
+      }
+
+
+      #p7 {
+        stroke: #000;
+        stroke-width: 10px;
+        stroke-linecap: round;
+        stroke-dasharray: .01px calc(100vw - 10px);
+        animation: full_line_draw 20s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+      }
+
+
+
+
+    </style>
+  </head>
+  <body>
+
+    <!-- SVG Filters -->
+    <svg id="svg-filters">
+      <defs>
+          <!-- Gradients -->
+          <linearGradient id="gradient-1" x1="0%" y1="0%" x2="100%" y2="100%" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" style="stop-color:rgb(4,0,255);"/>
+              <stop offset="50%" style="stop-color:rgb(255,255,0);"/>
+              <stop offset="100%" style="stop-color:rgb(0,0,0);"/>
+          </linearGradient>
+
+          <linearGradient id="gradient-2" x1="0%" y1="0%" x2="0%" y2="100%" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" style="stop-color:rgb(255,0,0);"/>
+              <stop offset="100%" style="stop-color:rgb(255,255,0);"/>
+          </linearGradient>
+
+          <linearGradient id="gradient-3" x1="0%" y1="0%" x2="0%" y2="100%" gradientUnits="userSpaceOnUse">
+            <stop id="gradient-base-1" offset="0%" />
+            <stop id="gradient-base-2" offset="100%" />
+          </linearGradient>
+
+          <!-- Animations -->
+          <animate 
+            xlink:href="#p1"
+            attributeName="d"
+            attributeType="XML"
+            repeatCount="indefinite"
+            dur="20s"
+            values="M0 0 L100,100 L200,0 L300,100 L400,0 L500,100 L600,0 L700,100 L800,0 L900,100 L1000,0;
+                    M0 50 L100,50 L200,50 L300,50 L400,50 L500,50 L600,50 L700,50 L800,50 L900,50 L1000,50;
+                    M0 0 L100,100 L200,0 L300,100 L400,0 L500,100 L600,0 L700,100 L800,0 L900,100 L1000,0;
+                    M0 50 L100,50 L200,50 L300,50 L400,50 L500,50 L600,50 L700,50 L800,50 L900,50 L1000,50;
+                    M0 0 L100,100 L200,0 L300,100 L400,0 L500,100 L600,0 L700,100 L800,0 L900,100 L1000,0;"/>
+
+            <animate 
+              xlink:href="#p2"
+              attributeName="d"
+              attributeType="XML"
+              repeatCount="indefinite"
+              dur="20s"
+              values="M0 0 L100,100 L200,0 L300,100 L400,0 L500,100 L600,0 L700,100 L800,0 L900,100 L1000,0;
+                      M0 100 L100,0 L200,100 L300,0 L400,100 L500,0 L600,100 L700,0 L800,100 L900,0 L1000,100;
+                      M0 0 L100,100 L200,0 L300,100 L400,0 L500,100 L600,0 L700,100 L800,0 L900,100 L1000,0;
+                      M0 100 L100,0 L200,100 L300,0 L400,100 L500,0 L600,100 L700,0 L800,100 L900,0 L1000,100;
+                      M0 0 L100,100 L200,0 L300,100 L400,0 L500,100 L600,0 L700,100 L800,0 L900,100 L1000,0;"/>
+
+            <animate 
+              xlink:href="#p5"
+              attributeName="d"
+              attributeType="XML"
+              repeatCount="indefinite"
+              dur="10s"
+              values="
+                M0 0 
+                q 0,100 100,100  
+                q 100,0 100,-100 
+                q 0,100 100,100 
+                q 100,0 100,-100  
+                q 0,100 100,100 
+                q 100,0 100,-100  
+                q 0,100 100,100  
+                q 100,0 100,-100  
+                q 0,100 100,100  
+                q 100,0 100,-100;
+                
+                M0 0 
+                q 200,100 100,100  
+                q 100,-100 100,-100 
+                q 55,100 100,100 
+                q 150,0 100,-100  
+                q 100,100 100,100 
+                q 200,0 100,-100  
+                q 0,100 100,100  
+                q 100,0 100,-100  
+                q 100,100 100,100  
+                q 100,0 100,-100;"/>
+
+      </defs>
+    </svg>
+
+    <h3>Simple Line (Path) SVG Animation</h3>
+
+    <h4>Path Transform</h4>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -2 1000 104">
+      <path id="p1" d="M0 0 L100,100 L200,0 L300,100 L400,0 L500,100 L600,0 L700,100 L800,0 L900,100 L1000,0" fill="transparent" />
+    </svg>
+
+    <h4>Path Transform with Horizontal Gradient</h4>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -2 1000 104">
+      <path id="p2" d="M0 0 L100,100 L200,0 L300,100 L400,0 L500,100 L600,0 L700,100 L800,0 L900,100 L1000,0 " fill="transparent" />
+    </svg>
+
+    <h4>Animate Gradient Behind Path</h4>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -2 1000 104">
+      <path id="p3" d="M0 50 L50,50 L1000,50" fill="transparent" />
+    </svg>
+
+    <h4>SVG Path with Curves</h4>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -2 1000 104">
+      <path id="p4" 
+      d="M0 0 
+      q 0,100 100,100  
+      q 100,0 100,-100 
+      q 0,100 100,100 
+      q 100,0 100,-100  
+      q 0,100 100,100 
+      q 100,0 100,-100  
+      q 0,100 100,100  
+      q 100,0 100,-100  
+      q 0,100 100,100  
+      q 100,0 100,-100" 
+      fill="transparent" />
+    </svg>
+
+    <h4>SVG Path with Curves and Animation</h4>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -2 1000 104">
+      <path id="p5" 
+      d="M0 0 
+      q 0,100 100,100  
+      q 100,0 100,-100 
+      q 0,100 100,100 
+      q 100,0 100,-100  
+      q 0,100 100,100 
+      q 100,0 100,-100  
+      q 0,100 100,100  
+      q 100,0 100,-100  
+      q 0,100 100,100  
+      q 100,0 100,-100" 
+      fill="transparent" />
+    </svg>
+
+    <h4>Animate Path Draw</h4>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -2 1000 104">
+      <path id="p6" d="M0 50 L50,50 L1000,50" fill="transparent" />
+    </svg>
+
+    <h4>Animate Path Dot</h4>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -5 1000 110">
+      <path id="p7" d="M0 0 L100,100 L200,0 L300,100 L400,0 L500,100 L600,0 L700,100 L800,0 L900,100 L1000,0" fill="transparent" />
+    </svg>
+  
+  </body>
+</html>
